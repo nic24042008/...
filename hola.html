@@ -10,8 +10,36 @@
       height: 100vh;
       display: grid;
       place-items: center;
-      background: #111;
+      background: #000;
       font-family: sans-serif;
+    }
+
+    .wrap {
+      position: relative;
+      display: inline-block;
+      background: #000;
+      padding: 16px;
+    }
+
+    .frame-container {
+      position: relative;
+      width: 110px;
+      height: 200px;
+    }
+
+    .frame-container iframe {
+      width: 110px;
+      height: 200px;
+      border: 0;
+      display: block;
+    }
+
+    .click-capture {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      background: transparent;
+      z-index: 2;
     }
 
     .instant-wrap {
@@ -30,13 +58,51 @@
       display: block;
     }
 
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <div class="instant-wrap">
-    <iframe width="110" height="200" src="https://www.myinstants.com/instant/la-bebecita-saturado-1099/embed/" scrolling="no"></iframe>
-    <iframe src="https://www.myinstants.com/instant/revivan-el-server-homero-414/embed/" scrolling="no"></iframe>
-    <iframe src="https://www.myinstants.com/instant/tu-madre-tiene-una-polla-parodia-de-bajo-el-mar-25969/embed/" scrolling="no"></iframe>
+  <div class="wrap">
+    <div id="top-layer">
+      <div class="frame-container">
+        <div class="instant-wrap">
+            <iframe 
+              id="troleo"
+              width="110"
+              height="200"
+              src="https://www.myinstants.com/instant/troleado-puto-coscu-60068/embed/"
+              frameborder="0"
+              scrolling="no"
+            ></iframe>
+        </div>
+        <div id="clickCapture" class="click-capture" title="Haz click aquí para continuar"></div>
+      </div>
+    </div>
+
+    <div id="bottom-layer" class="hidden">
+      <div class="instant-wrap">
+        <iframe width="110" height="200" src="https://www.myinstants.com/instant/momo-ella-me-llama-saturado-97384/embed" scrolling="no"></iframe>
+        <iframe width="110" height="200" src="https://www.myinstants.com/instant/la-bebecita-saturado-1099/embed/" scrolling="no"></iframe>
+        <iframe width="110" height="200" src="https://www.myinstants.com/instant/revivan-el-server-homero-414/embed/" scrolling="no"></iframe>
+        <iframe width="110" height="200" src="https://www.myinstants.com/instant/tu-madre-tiene-una-polla-parodia-de-bajo-el-mar-25969/embed/" scrolling="no"></iframe>
+      </div>
+    </div>
   </div>
+
+  <script>
+    const clickCapture = document.getElementById('clickCapture');
+    const topLayer = document.getElementById('top-layer');
+    const bottomLayer = document.getElementById('bottom-layer');
+
+    clickCapture.addEventListener('click', () => {
+      clickCapture.remove(); // quita la capa transparente para dejar el iframe libre
+      setTimeout(() => {
+        topLayer.style.display = 'none';
+        bottomLayer.classList.remove('hidden');
+      }, 2500);
+    });
+  </script>
 </body>
 </html>
